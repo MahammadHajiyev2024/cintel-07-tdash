@@ -10,7 +10,14 @@ import palmerpenguins
 df = palmerpenguins.load_penguins()
 
 # Title of the dashboard
-ui.page_opts(title="Penguins dashboard", fillable=True)
+
+ui.page_opts(
+    title="🐧 Penguins Dashboard", 
+    fillable=True, 
+    bg_color="#f0f8ff",  # Light blue background
+    icon="🐧",  # Penguin emoji as an icon
+    header_color="#4682b4"  # Steel blue header color
+)
 
 # Sidebar 
 with ui.sidebar(title="Filter controls"):
