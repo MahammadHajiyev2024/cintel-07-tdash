@@ -1,3 +1,4 @@
+Importing necessary libraries
 import seaborn as sns
 from faicons import icon_svg
 
@@ -5,11 +6,13 @@ from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins 
 
+# Loading DataFrame
 df = palmerpenguins.load_penguins()
 
+# Title of the dashboard
 ui.page_opts(title="Penguins dashboard", fillable=True)
 
-
+# Sidebar 
 with ui.sidebar(title="Filter controls"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
@@ -47,7 +50,7 @@ with ui.sidebar(title="Filter controls"):
         target="_blank",
     )
 
-
+# Main Layout
 with ui.layout_column_wrap(fill=False):
     with ui.value_box(showcase=icon_svg("earlybirds")):
         "Number of penguins"
@@ -85,7 +88,7 @@ with ui.layout_columns():
             )
 
     with ui.card(full_screen=True):
-        ui.card_header("Penguin data")
+        ui.card_header("Penguin Data")
 
         @render.data_frame
         def summary_statistics():
@@ -101,7 +104,7 @@ with ui.layout_columns():
 
 #ui.include_css(app_dir / "styles.css")
 
-
+# REactive Calculations
 @reactive.calc
 def filtered_df():
     filt_df = df[df["species"].isin(input.species())]
